@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful | Angana's Kitchen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            font-family: Arial, sans-serif;
+            background: #fff8ef;
+            color: #603719;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #287a3d;
+        }
+
+        .product {
+            background: #fff8ef;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #b64b0b;
+        }
+
+        .button {
+            display: inline-block;
+            background: #85451f;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 10px 5px;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Order Placed Successfully! 🎉</h1>
+
+    <p class="center">Thank you for shopping with Angana's Kitchen!</p>
+
+    <h3>Order Details</h3>
+
+    <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+    <p><strong>Customer:</strong> {{ order.customer_name }}</p>
+    <p><strong>Email:</strong> {{ order.email }}</p>
+    <p><strong>Phone:</strong> {{ order.phone }}</p>
+    <p><strong>Delivery Address:</strong> {{ order.address }}</p>
+    <p><strong>Order Status:</strong> {{ order.get_status_display }}</p>
+
+    <h3>Products Ordered</h3>
+
+    {% for item in order.items.all %}
+        <div class="product">
+            <strong>{{ item.product_name }}</strong><br>
+            Pack Size: {{ item.pack_size }}<br>
+            Price per Pack: ₹{{ item.price }}<br>
+            Number of Packs: {{ item.quantity }}<br>
+            Subtotal: ₹{{ item.total_price }}
+        </div>
+    {% endfor %}
+
+    <p class="total">Total Amount: ₹{{ order.total_amount }}</p>
+
+    <p class="center">This is a demo order. No money has been charged.</p>
+
+    <div class="center">
+        <a href="{% url 'my_orders' %}" class="button">My Orders</a>
+        <a href="{% url 'all_products' %}" class="button">Continue Shopping</a>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Products | Angana's Kitchen</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        .products-page {
+            padding: 60px 6%;
+            background: #fff8ed;
+            min-height: 100vh;
+        }
+
+        .products-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .products-heading h1 {
+            color: #75421f;
+            font-size: 38px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 25px auto 40px;
+        }
+
+        .search-container input {
+            width: 100%;
+            max-width: 420px;
+            padding: 14px 20px;
+            border: 2px solid #d5b18a;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-container input:focus {
+            border-color: #75421f;
+        }
+
+        .search-container button {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 30px;
+            background: #75421f;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-container button:hover {
+            background: #bd8744;
+        }
+
+        .clear-search {
+            color: #75421f;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .clear-search:hover {
+            text-decoration: underline;
+        }
+
+        .search-message {
+            text-align: center;
+            color: #75421f;
+            margin-bottom: 25px;
+            font-size: 17px;
+        }
+
+        .no-products {
+            text-align: center;
+            color: #75421f;
+            font-size: 18px;
+            padding: 35px;
+            grid-column: 1 / -1;
+        }
+
+        .category-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 45px;
+        }
+
+        .category-links a {
+            text-decoration: none;
+            background: #75421f;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .category-links a:hover {
+            background: #c58b43;
+            transform: translateY(-4px);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(100, 60, 20, 0.12);
+            transition: 0.35s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(100, 60, 20, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+        }
+
+        .product-card h3 {
+            color: #75421f;
+            margin: 15px 0 8px;
+        }
+
+        .product-price {
+            color: #a66b2d;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .view-button {
+            display: inline-block;
+            background: #75421f;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 20px;
+            margin-top: 12px;
+            text-decoration: none;
+        }
+
+        .view-button:hover {
+            background: #bd8744;
+        }
+
+        @media(max-width: 600px) {
+            .products-heading h1 {
+                font-size: 28px;
+            }
+
+            .products-page {
+                padding: 35px 5%;
+            }
+
+            .search-container input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<section class="products-page">
+
+    <div class="products-heading">
+        <h1>Discover Our Homemade Treasures</h1>
+        <p>Traditional goodness, lovingly prepared for your family.</p>
+    </div>
+
+    <!-- Product Search -->
+    <form method="GET" action="{% url 'all_products' %}"
+          class="search-container">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Search products by name..."
+            value="{{ q }}"
+        >
+
+        <button type="submit">🔍 Search</button>
+
+        {% if q %}
+            <a href="{% url 'all_products' %}" class="clear-search">
+                Clear Search ✕
+            </a>
+        {% endif %}
+
+    </form>
+
+    {% if q %}
+        <p class="search-message">
+            Search results for "<strong>{{ q }}</strong>"
+        </p>
+    {% endif %}
+
+    <div class="category-links">
+        <a href="{% url 'category_products' 'pickles' %}">
+            🫙 Pickles
+        </a>
+
+        <a href="{% url 'category_products' 'hair' %}">
+            🌿 Hair Care
+        </a>
+
+        <a href="{% url 'category_products' 'masalas' %}">
+            🌾 Homemade Masalas
+        </a>
+    </div>
+
+    <div class="products-grid">
+
+        {% for product in products %}
+
+        <div class="product-card">
+
+            {% if product.image %}
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}">
+            {% else %}
+                <p>Product image coming soon</p>
+            {% endif %}
+
+            <h3>{{ product.name }}</h3>
+
+            <p>{{ product.quantity }}</p>
+
+            <p class="product-price">
+                ₹{{ product.price }}
+            </p>
+
+            <a href="{% url 'product_detail' product.id %}"
+               class="view-button">
+                Explore Product
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <div class="no-products">
+            {% if q %}
+                <h3>No products found!</h3>
+                <p>Try searching with another product name.</p>
+            {% else %}
+                <h3>No products available yet.</h3>
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+</body>
+</html>

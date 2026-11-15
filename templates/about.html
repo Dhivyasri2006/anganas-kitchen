@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Angana's Kitchen</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff8ef;
+            color: #603719;
+            line-height: 1.8;
+        }
+
+        header {
+            background: #4b2d1c;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px;
+            background: #f1dfc8;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            color: #75401f;
+        }
+
+        .hero p {
+            font-size: 19px;
+            font-style: italic;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 25px;
+        }
+
+        .section {
+            background: white;
+            padding: 28px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        h2 {
+            color: #85451f;
+        }
+
+        .youtube {
+            display: inline-block;
+            background: #b52b22;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: #4b2d1c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: #f5d7a8;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <strong>Angana's Kitchen</strong>
+
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'all_products' %}">Products</a>
+        <a href="{% url 'contact' %}">Contact Us</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>About Angana's Kitchen ❤️</h1>
+    <p>From Our Home to Yours – Tradition in Every Taste.</p>
+</section>
+
+<div class="content">
+
+    <section class="section">
+        <h2>Our Story</h2>
+
+        <p>
+            Every beautiful food journey begins at home, and
+            Angana's Kitchen is no different.
+        </p>
+
+        <p>
+            Our journey began with our mother's passion for cooking.
+            Her traditional recipes, prepared with love and care,
+            were first enjoyed by our family, relatives and people
+            in our neighbourhood.
+        </p>
+
+        <p>
+            As more people tasted her preparations, they began
+            appreciating her recipes and encouraging her to share
+            them with a wider audience. They wanted more people
+            to experience the same authentic homemade flavours.
+        </p>
+
+        <p>
+            That encouragement inspired the beginning of
+            Angana's Kitchen.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Our Tradition, Our Promise</h2>
+
+        <p>
+            At Angana's Kitchen, we believe that traditional recipes
+            carry the warmth, memories and goodness of generations.
+        </p>
+
+        <p>
+            Our products are traditionally prepared with care,
+            keeping the homemade touch at the heart of everything
+            we do.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>What We Offer</h2>
+
+        <p>
+            🥭 <strong>Homemade Pickles:</strong>
+            Traditional flavours prepared with care.
+        </p>
+
+        <p>
+            🌿 <strong>Homemade Masalas:</strong>
+            Authentic blends that bring flavour to everyday cooking.
+        </p>
+
+        <p>
+            🌸 <strong>Traditional Hair Care Products:</strong>
+            Homemade preparations inspired by traditional practices.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Sharing Our Recipes</h2>
+
+        <p>
+            Our love for traditional recipes doesn't stop with
+            our products. We have also started a YouTube channel
+            where we share our recipes and cooking methods,
+            allowing more people to discover and enjoy our
+            culinary traditions.
+        </p>
+
+        <a class="youtube"
+           href="https://www.youtube.com/@Anganaskitchen"
+           target="_blank"
+           rel="noopener noreferrer">
+            Visit Our YouTube Channel ▶
+        </a>
+    </section>
+
+    <section class="section">
+        <h2>From Our Home to Yours</h2>
+
+        <p>
+            Angana's Kitchen is more than a name. It is our
+            mother's passion, the encouragement of the people
+            around us, and our wish to bring traditional
+            homemade goodness into more homes.
+        </p>
+
+        <p><strong>Made with care. Inspired by tradition. Shared with love.</strong></p>
+    </section>
+
+</div>
+
+<footer>
+    <p>© Angana's Kitchen | Made with Love ❤️</p>
+</footer>
+
+</body>
+</html>

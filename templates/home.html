@@ -1,0 +1,805 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Angana's Kitchen | Traditional Homemade Goodness</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+
+        /* GENERAL SETTINGS */
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            margin: 0;
+        }
+
+
+        /* STICKY NAVIGATION BAR */
+
+        header.navbar {
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            width: 100%;
+            background: #4b2d1c;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        header.navbar nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        header.navbar nav a {
+            text-decoration: none;
+        }
+
+
+        /* ABOUT AND CONTACT SECTIONS */
+
+        #about, #contact {
+            scroll-margin-top: 100px;
+        }
+
+        .info-section {
+            width: 100%;
+            padding: 85px 8%;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 1.9;
+        }
+
+        #about {
+            background: #f1dfc8;
+        }
+
+        #contact {
+            background: #fff8ef;
+        }
+
+
+        /* MAIN HEADINGS */
+
+        .section-heading {
+            font-size: 38px;
+            color: #75401f;
+            text-align: center;
+            margin: 0 0 12px;
+            letter-spacing: 2px;
+        }
+
+        .section-subheading {
+            font-size: 17px;
+            color: #a36a3e;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .info-section h2 {
+            font-size: 25px;
+            color: #85451f;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .info-section h3 {
+            color: #85451f;
+        }
+
+        .info-section p {
+            max-width: 850px;
+            margin: 12px auto;
+            color: #603719;
+            text-align: center;
+        }
+
+
+        /* DECORATIVE DIVIDER */
+
+        .section-divider {
+            width: 75px;
+            height: 3px;
+            background: #a66b3f;
+            margin: 20px auto 35px;
+            border: none;
+        }
+
+
+        /* PRODUCT OFFERINGS */
+
+        .offer-list {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            gap: 22px;
+            margin: 35px auto;
+        }
+
+        .offer-item {
+            flex: 1 1 220px;
+            max-width: 270px;
+            padding: 25px 18px;
+            background: rgba(255,255,255,0.65);
+            border-bottom: 3px solid #a66b3f;
+            box-sizing: border-box;
+            transition: transform 0.3s;
+        }
+
+        .offer-item:hover {
+            transform: translateY(-6px);
+        }
+
+        .offer-item strong {
+            display: block;
+            color: #75401f;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .offer-item p {
+            font-size: 14px;
+        }
+
+
+        /* BUTTONS */
+
+        .info-center {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .info-button {
+            display: inline-block;
+            background: #85451f;
+            color: white !important;
+            padding: 13px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin: 15px 5px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .info-button:hover {
+            background: #603719;
+            transform: translateY(-3px);
+        }
+
+        .youtube-button {
+            background: #c62828;
+        }
+
+        .youtube-button:hover {
+            background: #a31515;
+        }
+
+
+        /* EMAIL */
+
+        .email-link {
+            display: inline-block;
+            font-size: 21px;
+            font-weight: bold;
+            color: #85451f;
+            text-decoration: none;
+            margin: 15px 0;
+            word-break: break-word;
+        }
+
+        .email-link:hover {
+            color: #b64b0b;
+            text-decoration: underline;
+        }
+
+
+        /* FOOTER */
+
+        .site-footer {
+            background: #4b2d1c;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        .site-footer p {
+            margin: 12px 0;
+        }
+
+        .site-footer a {
+            color: #f5d7a8;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* MOBILE RESPONSIVENESS */
+
+        @media (max-width: 768px) {
+
+            header.navbar {
+                padding: 12px;
+            }
+
+            header.navbar nav {
+                gap: 12px;
+            }
+
+            header.navbar nav a,
+            header.navbar nav span {
+                font-size: 13px;
+            }
+
+            .section-heading {
+                font-size: 29px;
+            }
+
+            .info-section {
+                padding: 55px 20px;
+            }
+
+            .offer-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .offer-item {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .site-footer a {
+                display: inline-block;
+                margin: 8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION BAR -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Angana's Kitchen
+    </div>
+
+    <nav>
+
+        <a href="{% url 'home' %}">Home</a>
+
+        <a href="{% url 'all_products' %}">Our Products</a>
+
+        <a href="#about">About Us</a>
+
+        <a href="#contact">Contact</a>
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'my_orders' %}">My Orders</a>
+            <a href="{% url 'my_profile' %}">My Profile</a>
+            <a href="{% url 'cart' %}">🛒 Cart</a>
+
+            <span>
+                Welcome, {{ user.first_name|default:user.username }}
+            </span>
+
+            <a href="{% url 'customer_logout' %}">Logout</a>
+
+        {% else %}
+
+            <a href="{% url 'customer_login' %}">Login</a>
+
+            <a href="{% url 'register' %}">Register</a>
+
+        {% endif %}
+
+    </nav>
+
+</header>
+
+
+
+<!-- WELCOME SECTION -->
+
+<section class="welcome">
+
+    <p class="welcome-small">
+        TRADITION • QUALITY • HOMEMADE
+    </p>
+
+    <h1>Welcome to Angana's Products</h1>
+
+    <p>
+        Discover the authentic taste of tradition,
+        lovingly prepared for your family.
+    </p>
+
+    <a href="{% url 'all_products' %}" class="explore-btn">
+        Explore Our Products
+    </a>
+
+</section>
+
+
+
+<!-- PRODUCT CAROUSEL -->
+
+<section class="product-carousel-section">
+
+    <h2>Explore Our Products</h2>
+
+    <p>Discover our homemade traditional favourites</p>
+
+    <div class="carousel-container">
+
+
+        <a href="{% url 'category_products' 'hair' %}"
+           class="carousel-card left">
+
+            <img src="{% static 'images/herbal_hair_oil.png' %}"
+                 alt="Hair Care">
+
+            <h3>Hair Oils & Products</h3>
+
+        </a>
+
+
+
+        <a href="{% url 'category_products' 'pickles' %}"
+           class="carousel-card center">
+
+            <img src="{% static 'images/mango_pickle.png' %}"
+                 alt="Traditional Pickles">
+
+            <h3>Traditional Pickles</h3>
+
+        </a>
+
+
+
+        <a href="{% url 'category_products' 'masalas' %}"
+           class="carousel-card right">
+
+            <img src="{% static 'images/sticker sambar powder.png' %}"
+                 alt="Homemade Masalas">
+
+            <h3>Homemade Masalas</h3>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- COLLECTIONS -->
+
+<section class="collections">
+
+    <h2>Our Collections</h2>
+
+    <p>
+        Discover something special in every collection.
+    </p>
+
+</section>
+
+
+
+<!-- ABOUT US SECTION -->
+
+<section id="about" class="info-section">
+
+    <h1 class="section-heading">
+        ABOUT US
+    </h1>
+
+    <p class="section-subheading">
+        The Story Behind Angana's Kitchen
+    </p>
+
+    <hr class="section-divider">
+
+
+    <h2>A Journey That Began at Home ❤️</h2>
+
+    <p>
+        Every beautiful food journey begins at home,
+        and Angana's Kitchen is no different.
+    </p>
+
+    <p>
+        Our journey began with our mother's passion for cooking.
+        Her traditional recipes, prepared with love and care,
+        were first enjoyed by our family, relatives and people
+        in our neighbourhood.
+    </p>
+
+    <p>
+        As more people tasted her preparations, they began
+        appreciating her recipes and encouraging her to share
+        them with a wider audience. They wanted more people
+        to experience the same authentic homemade flavours.
+    </p>
+
+    <p>
+        That encouragement inspired the beginning of
+        Angana's Kitchen.
+    </p>
+
+
+    <h2>Our Tradition, Our Promise</h2>
+
+    <p>
+        At Angana's Kitchen, we believe traditional recipes
+        carry the warmth, memories and goodness of generations.
+    </p>
+
+    <p>
+        Our products are traditionally prepared with care,
+        keeping the homemade touch at the heart of everything
+        we do.
+    </p>
+
+
+    <h2>What We Offer</h2>
+
+    <p>
+        Discover the traditional goodness of our homemade products.
+    </p>
+
+
+    <div class="offer-list">
+
+        <div class="offer-item">
+
+            <strong>🥭 Homemade Pickles</strong>
+
+            <p>
+                Traditional flavours prepared with care
+                for your everyday meals.
+            </p>
+
+        </div>
+
+
+        <div class="offer-item">
+
+            <strong>🌿 Homemade Masalas</strong>
+
+            <p>
+                Authentic spice blends that bring
+                traditional flavour to your cooking.
+            </p>
+
+        </div>
+
+
+        <div class="offer-item">
+
+            <strong>🌸 Traditional Hair Care</strong>
+
+            <p>
+                Homemade preparations inspired
+                by traditional practices.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <h2>Sharing Our Recipes With You</h2>
+
+    <p>
+        Our love for traditional recipes doesn't stop
+        with our products. We also share our recipes
+        and cooking methods through our YouTube channel,
+        allowing more people to discover and enjoy
+        our culinary traditions.
+    </p>
+
+
+    <div class="info-center">
+
+        <a class="info-button youtube-button"
+           href="https://www.youtube.com/@Anganaskitchen"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            Watch Our Recipes on YouTube ▶
+
+        </a>
+
+    </div>
+
+
+    <h2>From Our Home to Yours</h2>
+
+    <p>
+        Angana's Kitchen is more than a name. It is our
+        mother's passion, the encouragement of the people
+        around us, and our wish to bring traditional
+        homemade goodness into more homes.
+    </p>
+
+    <p>
+        <strong>
+            Made with care. Inspired by tradition. Shared with love.
+        </strong>
+    </p>
+
+</section>
+
+
+
+<!-- CONTACT US SECTION -->
+
+<section id="contact" class="info-section">
+
+    <h1 class="section-heading">
+        CONTACT US
+    </h1>
+
+    <p class="section-subheading">
+        We'd Love to Hear From You! 💌
+    </p>
+
+    <hr class="section-divider">
+
+
+    <h2>Have a Question?</h2>
+
+    <p>
+        Have questions about our products, ingredients,
+        orders or recipes? Have suggestions or feedback?
+    </p>
+
+    <p>
+        We would be happy to hear from you.
+        For any queries, suggestions or enquiries,
+        please reach out to us through email.
+    </p>
+
+
+    <h2>Get in Touch With Us</h2>
+
+    <p>
+        📧 Email Us
+    </p>
+
+
+    <a class="email-link"
+       href="mailto:anganakitchen25@gmail.com">
+
+        anganakitchen25@gmail.com
+
+    </a>
+
+
+    <p>
+        For any queries, please mail us at the above address.
+    </p>
+
+
+    <h2>Follow Our Kitchen on YouTube</h2>
+
+    <p>
+        Explore our traditional recipes and cooking videos.
+        Join us as we share the flavours of our kitchen!
+    </p>
+
+
+    <div class="info-center">
+
+        <a class="info-button youtube-button"
+           href="https://www.youtube.com/@Anganaskitchen"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            Visit Angana's Kitchen on YouTube ▶
+
+        </a>
+
+    </div>
+
+
+    <p>
+        Thank you for being a part of our journey! ❤️
+    </p>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+    <p>
+        <strong>Angana's Kitchen</strong>
+    </p>
+
+    <p>
+        From Our Home to Yours – Tradition in Every Taste.
+    </p>
+
+
+    <p>
+
+        <a href="{% url 'home' %}">Home</a>
+
+        <a href="{% url 'all_products' %}">Our Products</a>
+
+        <a href="#about">About Us</a>
+
+        <a href="#contact">Contact Us</a>
+
+    </p>
+
+
+    <p>
+        <a href="https://www.youtube.com/@Anganaskitchen"
+           target="_blank"
+           rel="noopener noreferrer">
+            YouTube
+        </a>
+    </p>
+
+
+    <p>
+        © 2026 Angana's Kitchen. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<!-- PRODUCT CAROUSEL JAVASCRIPT -->
+
+<script>
+
+const carousel = document.querySelector('.carousel-container');
+
+const cards = document.querySelectorAll('.carousel-card');
+
+let current = 1;
+
+let autoRotate;
+
+
+function updateCarousel() {
+
+    cards.forEach((card, index) => {
+
+        card.classList.remove('left', 'center', 'right');
+
+        if (index === current) {
+
+            card.classList.add('center');
+
+        }
+
+        else if (
+            index === (current - 1 + cards.length) % cards.length
+        ) {
+
+            card.classList.add('left');
+
+        }
+
+        else {
+
+            card.classList.add('right');
+
+        }
+
+    });
+
+}
+
+
+function nextProduct() {
+
+    current = (current + 1) % cards.length;
+
+    updateCarousel();
+
+}
+
+
+function previousProduct() {
+
+    current = (current - 1 + cards.length) % cards.length;
+
+    updateCarousel();
+
+}
+
+
+function startRotation() {
+
+    stopRotation();
+
+    autoRotate = setInterval(nextProduct, 3000);
+
+}
+
+
+function stopRotation() {
+
+    clearInterval(autoRotate);
+
+}
+
+
+cards.forEach(card => {
+
+    card.addEventListener('mouseenter', () => {
+
+        stopRotation();
+
+        if (card.classList.contains('left')) {
+
+            previousProduct();
+
+        }
+
+        else if (card.classList.contains('right')) {
+
+            nextProduct();
+
+        }
+
+    });
+
+});
+
+
+if (carousel) {
+
+    carousel.addEventListener('mouseenter', stopRotation);
+
+    carousel.addEventListener('mouseleave', startRotation);
+
+    updateCarousel();
+
+    startRotation();
+
+}
+
+</script>
+
+
+</body>
+</html>

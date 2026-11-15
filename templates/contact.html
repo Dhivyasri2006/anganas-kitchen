@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Angana's Kitchen</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff8ef;
+            color: #603719;
+        }
+
+        header {
+            background: #4b2d1c;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: #f1dfc8;
+        }
+
+        .hero h1 {
+            color: #75401f;
+            font-size: 36px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 45px auto;
+            padding: 20px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .contact-item {
+            background: #fff8ef;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .contact-item h3 {
+            color: #85451f;
+        }
+
+        .contact-item a {
+            color: #a64b1c;
+            font-weight: bold;
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .youtube {
+            display: inline-block;
+            background: #b52b22;
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: #4b2d1c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <strong>Angana's Kitchen</strong>
+
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'all_products' %}">Products</a>
+        <a href="{% url 'about' %}">About Us</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Contact Us 💌</h1>
+    <p>We would love to hear from you!</p>
+</section>
+
+<div class="container">
+
+    <div class="contact-card">
+
+        <h2>Get in Touch</h2>
+
+        <p>
+            Have questions about our products, ingredients,
+            orders or recipes?
+        </p>
+
+        <p>
+            For any queries, suggestions or enquiries,
+            feel free to reach out to us through email.
+            We will be happy to hear from you!
+        </p>
+
+        <div class="contact-item">
+            <h3>📧 Email Us</h3>
+
+            <p>For any queries, please mail us at:</p>
+
+            <a href="mailto:anganakitchen25@gmail.com">
+                anganakitchen25@gmail.com
+            </a>
+        </div>
+
+        <div class="contact-item">
+            <h3>▶ Follow Us on YouTube</h3>
+
+            <p>
+                Explore our traditional recipes and
+                cooking videos on our YouTube channel.
+            </p>
+
+            <a class="youtube"
+               href="https://www.youtube.com/@Anganaskitchen"
+               target="_blank"
+               rel="noopener noreferrer">
+                Visit Our Channel
+            </a>
+        </div>
+
+        <p>
+            Thank you for supporting Angana's Kitchen! ❤️
+        </p>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© Angana's Kitchen | Made with Love ❤️</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Angana's Kitchen</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #fff8ed;
+            color: #59351f;
+        }
+
+        .profile-navbar {
+            background: #4b2e1d;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .profile-navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .profile-container {
+            max-width: 550px;
+            margin: 60px auto;
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(80, 45, 20, 0.12);
+        }
+
+        h1 {
+            text-align: center;
+            color: #75421f;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #896c54;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d5b18a;
+            border-radius: 9px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: 2px solid #b77b43;
+            border-color: transparent;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            background: #75421f;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #bd8744;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            color: #75421f;
+            text-decoration: none;
+        }
+
+        .messages {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        @media(max-width: 600px) {
+            .profile-container {
+                margin: 30px 15px;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="profile-navbar">
+    <h2>Angana's Kitchen</h2>
+    <a href="{% url 'home' %}">⌂ Home</a>
+</header>
+
+<section class="profile-container">
+
+    <h1>My Profile</h1>
+    <p class="subtitle">Manage your account information</p>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="username">Username</label>
+        <input
+            type="text"
+            id="username"
+            value="{{ profile_user.username }}"
+            readonly
+        >
+
+        <label for="full_name">Full Name</label>
+        <input
+            type="text"
+            id="full_name"
+            name="full_name"
+            value="{{ profile_user.first_name }}"
+            required
+        >
+
+        <label for="email">Email Address</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            value="{{ profile_user.email }}"
+            required
+        >
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <a href="{% url 'my_orders' %}" class="back-link">
+        View My Orders →
+    </a>
+
+    <a href="{% url 'home' %}" class="back-link">
+        Back to Home
+    </a>
+
+</section>
+
+</body>
+</html>

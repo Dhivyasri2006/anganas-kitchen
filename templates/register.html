@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Angana's Kitchen</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Georgia, serif;
+            background: linear-gradient(135deg, #fff4e5, #f5d7b5, #e8c39e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 460px;
+            background: #fffdf8;
+            padding: 40px;
+            border-radius: 22px;
+            box-shadow: 0 15px 45px rgba(91, 49, 20, 0.18);
+        }
+
+        .brand {
+            text-align: center;
+            color: #75421f;
+            font-size: 29px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #96745b;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin: 16px 0 7px;
+            color: #58351f;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d8c1a9;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #a45d2a;
+            box-shadow: 0 0 0 3px rgba(164, 93, 42, 0.12);
+        }
+
+        /* Password eye icon */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            padding-right: 48px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 19px;
+            padding: 5px;
+            color: #75421f;
+        }
+
+        .password-hint {
+            color: #96745b;
+            font-size: 12px;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        .register-button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            background: #75421f;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .register-button:hover {
+            background: #a45d2a;
+            transform: translateY(-2px);
+        }
+
+        .message {
+            background: #fbe6df;
+            color: #8b2f20;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .bottom-text {
+            text-align: center;
+            margin-top: 22px;
+            color: #76543b;
+        }
+
+        a {
+            color: #9a5527;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="register-card">
+
+    <div class="brand">Angana's Kitchen</div>
+
+    <p class="subtitle">
+        A little taste of homemade goodness ❤️
+    </p>
+
+    <h2 style="text-align:center; color:#58351f;">
+        Create Your Account
+    </h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="hidden" name="next" value="{{ next }}">
+
+        <label>Full Name</label>
+
+        <input type="text" name="full_name"
+               placeholder="Enter your full name"
+               autocomplete="name" required>
+
+        <label>Email Address</label>
+
+        <input type="email" name="email"
+               placeholder="Enter your email"
+               autocomplete="email" required>
+
+        <label>Password</label>
+
+        <div class="password-wrapper">
+            <input type="password"
+                   id="registerPassword"
+                   name="password"
+                   placeholder="Create a password"
+                   autocomplete="new-password"
+                   required>
+
+            <button type="button"
+                    class="toggle-password"
+                    onclick="togglePassword('registerPassword', this)"
+                    aria-label="Show password">
+                👁
+            </button>
+        </div>
+
+        <p class="password-hint">
+            Your password must contain at least one alphabet,
+            one number and one special symbol.
+        </p>
+
+        <label>Confirm Password</label>
+
+        <div class="password-wrapper">
+            <input type="password"
+                   id="confirmPassword"
+                   name="confirm_password"
+                   placeholder="Re-enter your password"
+                   autocomplete="new-password"
+                   required>
+
+            <button type="button"
+                    class="toggle-password"
+                    onclick="togglePassword('confirmPassword', this)"
+                    aria-label="Show password">
+                👁
+            </button>
+        </div>
+
+        <button type="submit" class="register-button">
+            Create Account
+        </button>
+
+    </form>
+
+    <p class="bottom-text">
+        Already have an account?
+        <a href="{% url 'customer_login' %}">Login</a>
+    </p>
+
+</div>
+
+<script>
+    function togglePassword(id, button) {
+
+        const password = document.getElementById(id);
+
+        if (password.type === "password") {
+            password.type = "text";
+            button.textContent = "🙈";
+            button.setAttribute("aria-label", "Hide password");
+        } else {
+            password.type = "password";
+            button.textContent = "👁";
+            button.setAttribute("aria-label", "Show password");
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff8ed;
+    color: #49321f;
+}
+
+/* Navigation bar */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 6%;
+    background: #49321f;
+    color: white;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #e8bd78;
+}
+
+.cart {
+    cursor: pointer;
+}
+
+/* Welcome banner */
+
+.welcome {
+    text-align: center;
+    padding: 100px 20px;
+    background: #f1dfc5;
+}
+
+.welcome-small {
+    letter-spacing: 3px;
+    color: #96632f;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    font-size: 46px;
+    color: #704321;
+    margin-bottom: 22px;
+}
+
+.welcome p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.welcome button {
+    padding: 14px 30px;
+    background: #704321;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.welcome button:hover {
+    background: #96632f;
+}
+
+/* Collections */
+
+.collections {
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.collections h2 {
+    font-size: 32px;
+    color: #704321;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .navbar nav {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .welcome h1 {
+        font-size: 32px;
+    }
+}
+
+/* =================================
+   3D PRODUCT CAROUSEL
+================================= */
+
+.product-carousel-section {
+    text-align: center;
+    padding: 65px 20px;
+    background: #fff8ed;
+    overflow: hidden;
+}
+
+.product-carousel-section h2 {
+    color: #704321;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.product-carousel-section > p {
+    color: #795b43;
+    margin-bottom: 40px;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 470px;
+    margin: 0 auto;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+.carousel-card {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 270px;
+    height: 390px;
+    padding: 20px;
+    background: #fffdf8;
+    border: 1px solid #e7d2b3;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(80, 48, 20, 0.18);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.7s ease;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 310px;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 10px rgba(0,0,0,0.15));
+}
+
+.carousel-card h3 {
+    color: #704321;
+    font-size: 19px;
+    margin-top: 12px;
+}
+
+/* Centre product */
+
+.carousel-card.center {
+    transform: translateX(-50%) translateZ(100px) scale(1.08);
+    z-index: 3;
+}
+
+/* Left product */
+
+.carousel-card.left {
+    transform: translateX(-145%) rotateY(25deg) scale(0.78);
+    z-index: 2;
+    opacity: 0.85;
+}
+
+/* Right product */
+
+.carousel-card.right {
+    transform: translateX(45%) rotateY(-25deg) scale(0.78);
+    z-index: 2;
+    opacity: 0.85;
+}
+
+/* Hover effect */
+
+.carousel-card:hover {
+    box-shadow: 0 20px 40px rgba(80, 48, 20, 0.25);
+}
+
+/* Mobile screen */
+
+@media (max-width: 700px) {
+    .carousel-container {
+        height: 380px;
+    }
+
+    .carousel-card {
+        width: 190px;
+        height: 320px;
+        padding: 12px;
+    }
+
+    .carousel-card img {
+        height: 240px;
+        background: transparent;
+object-fit: contain;
+mix-blend-mode: multiply;
+    }
+
+    .carousel-card.left {
+        transform: translateX(-115%) rotateY(20deg) scale(0.7);
+    }
+
+    .carousel-card.right {
+        transform: translateX(15%) rotateY(-20deg) scale(0.7);
+    }
+
+    .carousel-card.center {
+        transform: translateX(-50%) translateZ(50px) scale(1);
+    }
+}
+.carousel-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.carousel-card:hover {
+    box-shadow: 0 15px 35px rgba(100, 60, 20, 0.2);
+}
