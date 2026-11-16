@@ -1,7 +1,11 @@
 
 import re
 import uuid
+import json
+from urllib.parse import urlencode
 
+from django.http import HttpResponse
+from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -10,6 +14,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from django.db import transaction
 
 from .models import Product, CartItem, Order, OrderItem
+
 
 User = get_user_model()
 
@@ -30,7 +35,6 @@ def all_products(request):
         'products': products,
         'q': q
     })
-
 
 
 def category_products(request, category):
@@ -119,8 +123,19 @@ def customer_logout(request):
     return redirect('home')
 
 
-@login_required
 def add_to_cart(request, product_id):
+    if not request.user.is_authenticated:
+        login_url = reverse('customer_login') + '?' + urlencode({
+            'next': reverse('product_detail', args=[product_id])
+        })
+
+        return HttpResponse(
+            '<script>'
+            'alert("Please login to add product to cart");'
+            f'window.location.href = {json.dumps(login_url)};'
+            '</script>'
+        )
+
     if request.method != 'POST':
         return redirect('product_detail', product_id=product_id)
 
@@ -295,6 +310,8 @@ def order_success(request, order_number):
     )
 
     return render(request, 'order_success.html', {'order': order})
+
+
 @login_required
 def my_orders(request):
     orders = Order.objects.filter(
@@ -304,12 +321,15 @@ def my_orders(request):
     return render(request, 'my_orders.html', {
         'orders': orders
     })
+
+
 def about(request):
     return render(request, 'about.html')
 
 
 def contact(request):
     return render(request, 'contact.html')
+
 
 @login_required
 def my_profile(request):
