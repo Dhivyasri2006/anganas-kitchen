@@ -1,3 +1,4 @@
+
 import dj_database_url
 from pathlib import Path
 import os
@@ -8,9 +9,14 @@ import cloudinary.api
 
 # Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / '.env')
-# Cloudinary configuration
 
+load_dotenv(BASE_DIR / '.env')
+
+# Detect Vercel environment
+IS_VERCEL = os.getenv('VERCEL') == '1'
+
+
+# Cloudinary configuration
 cloudinary.config(
     cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
     api_key=os.getenv('CLOUDINARY_API_KEY'),
@@ -25,13 +31,29 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 if not SECRET_KEY:
     raise RuntimeError("DJANGO_SECRET_KEY is missing from the environment.")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '.vercel.app',
     'localhost',
     '127.0.0.1',
 ]
+
+# Allow requests from your Vercel website
+CSRF_TRUSTED_ORIGINS = [
+    'https://anganas-kitchen.vercel.app',
+    'https://*.vercel.app',
+]
+
+# Vercel runs behind a proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Secure cookies on the deployed website
+CSRF_COOKIE_SECURE = IS_VERCEL
+SESSION_COOKIE_SECURE = IS_VERCEL
+
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'Lax'
 
 
 # Application definition
@@ -77,7 +99,6 @@ WSGI_APPLICATION = 'anganas_project.wsgi.application'
 
 
 # Database - Neon PostgreSQL with SQLite fallback
-
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 if DATABASE_URL:
@@ -96,6 +117,7 @@ else:
         }
     }
 
+
 # Password validation
 AUTH_PASSWORD_VALIDATORS = []
 
@@ -113,7 +135,8 @@ USE_TZ = True
 # Static files
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static',]
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
@@ -134,6 +157,9 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# Cloudinary storage
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
@@ -141,6 +167,7 @@ CLOUDINARY_STORAGE = {
     'SECURE': True,
     'PREFIX': '',
 }
+
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
